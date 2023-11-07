@@ -14,7 +14,7 @@ This repository implements a command-line utility for filtering server access da
 
 ### Build
 
-`cd ciq-takehome && make build`
+`cd ciq-takehome/ && make build`
 
 ### Test
 
@@ -22,7 +22,7 @@ This repository implements a command-line utility for filtering server access da
 
 ## How to use
 
-Run the executable in your terminal of choice after building. Providing a comma-separated source file is mandatory:
+Run the executable in your terminal of choice after building as follows. Providing a comma-separated source file is mandatory:
 
 `./bin/server-info -f ./log/server_log.csv -all`
 

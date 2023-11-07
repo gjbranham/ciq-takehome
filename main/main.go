@@ -22,6 +22,7 @@ func main() {
 	fo, err := os.Open(args.SourceFile)
 	if err != nil {
 		fmt.Printf("Failed to open provided log file '%v': %v\n", args.SourceFile, err)
+		os.Exit(1)
 	}
 	defer fo.Close()
 
