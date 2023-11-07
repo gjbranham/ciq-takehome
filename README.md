@@ -45,6 +45,7 @@ This will return a count of all server accesses contained in the log.
 - Filter by upload or download (easy to implement)
 - More robust Makefile (fully qualified paths)
 - Get test coverage near 100% by checking more error branches
+- Expand username matching
 
 Current test coverage is pretty good though!
 
