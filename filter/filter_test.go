@@ -24,58 +24,58 @@ func TestVariousArgCombinations(t *testing.T) {
 	tests := []test{
 		{
 			args: []string{"testapp", "-f", "dummyCsv"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 3,
 		},
 		{
 			args: []string{"testapp", "-f", "dummyCsv", "-all"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 3,
 		},
 		{
 			args: []string{"testapp", "-f", "dummyCsv", "-u", "jordonGriff"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 1,
 		},
 		{
 			args: []string{"testapp", "-f", "dummyCsv", "-d", "26/04/2020"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 1,
 		},
 		{
 			args: []string{"testapp", "-f", "dummyCsv", "-gt", "82"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 1,
 		},
 		{
 			args: []string{"testapp", "-f", "dummyCsv", "-lt", "35"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 1,
 		},
 		{
 			args: []string{"testapp", "-f", "dummyCsv", "-gt", "59", "-lt", "61"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 1,
 		},
 		{
 			args: []string{"testapp", "-f", "dummyCsv", "-u", "jordonGriff", "-gt", "59", "-lt", "61", "-all"}, inputData: []csv.AccessInfo{
-				{"Sun Apr 26 03:49:17 UTC 2020", "jordonGriff", "upload", 60},
-				{"Sun Apr 12 22:10:38 UTC 2020", "sarah94", "download", 34},
-				{"Mon Apr 13 01:44:53 UTC 2020", "rosannaM", "download", 83},
+				{Timestamp: "Sun Apr 26 03:49:17 UTC 2020", Username: "jordonGriff", Operation: "upload", Size: 60},
+				{Timestamp: "Sun Apr 12 22:10:38 UTC 2020", Username: "sarah94", Operation: "download", Size: 34},
+				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 3,
 		},
 	}

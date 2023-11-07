@@ -3,7 +3,9 @@ package args
 import (
 	"errors"
 	"flag"
+	"os"
 	"path/filepath"
+	"time"
 )
 
 type Arguments struct {
@@ -18,6 +20,7 @@ type Arguments struct {
 
 func ProcessArgs(exeName string, sysArgs []string) (*Arguments, error) {
 	flags := flag.NewFlagSet(exeName, flag.ContinueOnError)
+	flag.CommandLine.SetOutput(os.Stderr)
 
 	var args Arguments
 	flags.StringVar(&args.SourceFile, "f", "", "Source csv server log file. Required argument")
@@ -32,26 +35,33 @@ func ProcessArgs(exeName string, sysArgs []string) (*Arguments, error) {
 		return nil, err
 	}
 
+	if err := validateArgs(args); err != nil {
+		return nil, err
+	}
+
 	absPath, err := filepath.Abs(args.SourceFile)
 	if err != nil {
 		return nil, err
 	}
 	args.SourceFile = absPath
 
-	if err := validateArgs(args); err != nil {
-		return nil, err
-	}
-
 	return &args, nil
 }
 
 func validateArgs(args Arguments) error {
 	if args.SourceFile == "" {
-		return errors.New("a source file must be specified")
+		return errors.New("source file cannot be empty")
 	}
 
 	if (args.GreaterThanSize > 0 && args.LessThanSize > 0) && (args.GreaterThanSize > args.LessThanSize) {
-		return errors.New("greater-than value cannot be smaller than less-than value")
+		return errors.New("invalid combination of greaterThan and lessThan values")
+	}
+
+	if args.Date != "" {
+		_, err := time.Parse("02/01/2006", args.Date)
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }

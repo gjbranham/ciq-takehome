@@ -32,7 +32,6 @@ func FilterData(data []c.AccessInfo, args args.Arguments) ([]c.AccessInfo, error
 			return nil, err
 		}
 	}
-
 	return filteredData, nil
 }
 
