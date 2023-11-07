@@ -35,7 +35,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	filteredData, err := f.FilterData(allData, *args)
+	filteredData, err := f.FilterData(allData, args)
 	if err != nil {
 		fmt.Printf("Failed to filter server data: %v\n", err)
 		os.Exit(1)

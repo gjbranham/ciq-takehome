@@ -88,7 +88,7 @@ func TestVariousArgCombinations(t *testing.T) {
 		t.Run(strings.Join(tt.args, " "), func(t *testing.T) {
 			os.Args = tt.args
 			args, _ := args.ProcessArgs(os.Args[0], os.Args[1:])
-			filtered, _ := FilterData(tt.inputData, *args)
+			filtered, _ := FilterData(tt.inputData, args)
 
 			if len(filtered) != tt.matchCount {
 				t.Errorf("Number of matches did not align\nWanted: %v\nGot   : %v\n", tt.matchCount, len(filtered))
