@@ -3,6 +3,7 @@ package args
 import (
 	"errors"
 	"flag"
+	"path/filepath"
 )
 
 type Arguments struct {
@@ -30,6 +31,12 @@ func ProcessArgs(exeName string, sysArgs []string) (*Arguments, error) {
 	if err := flags.Parse(sysArgs); err != nil {
 		return nil, err
 	}
+
+	absPath, err := filepath.Abs(args.SourceFile)
+	if err != nil {
+		return nil, err
+	}
+	args.SourceFile = absPath
 
 	if err := validateArgs(args); err != nil {
 		return nil, err

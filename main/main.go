@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"path/filepath"
 
 	"github.com/gjbranham/ciq-takehome/args"
 	c "github.com/gjbranham/ciq-takehome/csv"
@@ -20,13 +19,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	absPath, err := filepath.Abs(args.SourceFile)
-	if err != nil {
-		fmt.Printf("Failed to resolve absolute path for '%v': %v\n", args.SourceFile, err)
-		os.Exit(1)
-	}
-
-	fo, err := os.Open(absPath)
+	fo, err := os.Open(args.SourceFile)
 	if err != nil {
 		fmt.Printf("Failed to open provided log file '%v': %v\n", args.SourceFile, err)
 	}
@@ -41,17 +34,16 @@ func main() {
 		os.Exit(0)
 	}
 
-	finalData, err := f.FilterData(allData, *args)
+	filteredData, err := f.FilterData(allData, *args)
 	if err != nil {
 		fmt.Printf("Failed to filter server data: %v\n", err)
 		os.Exit(1)
 	}
 
 	if args.Verbose {
-		for _, item := range finalData {
+		for _, item := range filteredData {
 			fmt.Printf("%v,%v,%v,%v\n", item.Timestamp, item.Username, item.Operation, item.Size)
 		}
 	}
-	fmt.Printf("Number of server access entries after filtering: %v\n", len(finalData))
-
+	fmt.Printf("Number of server access entries after filtering: %v\n", len(filteredData))
 }
