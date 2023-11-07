@@ -78,6 +78,10 @@ func TestVariousArgCombinations(t *testing.T) {
 				{Timestamp: "Mon Apr 13 01:44:53 UTC 2020", Username: "rosannaM", Operation: "download", Size: 83},
 			}, matchCount: 3,
 		},
+		{
+			args: []string{"testapp", "-f", "dummyCsv", "-all"}, inputData: []csv.AccessInfo{},
+			matchCount: 0,
+		},
 	}
 
 	for _, tt := range tests {

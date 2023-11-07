@@ -2,11 +2,10 @@
 
 This repository implements a command-line utility for filtering server access data contained in comma-separated server logs. The data should be structured like so:
 
-| timestamp | username | operation | size |
-|----------|----------|----------|----------|
-| Sun Apr 12 22:10:38 UTC 2020 | sarah94 | download | 34 |
-| Sun Apr 12 22:35:06 UTC 2020 | Maia86 | download | 75 |
-
+| timestamp                    | username | operation | size |
+| ---------------------------- | -------- | --------- | ---- |
+| Sun Apr 12 22:10:38 UTC 2020 | sarah94  | download  | 34   |
+| Sun Apr 12 22:35:06 UTC 2020 | Maia86   | download  | 75   |
 
 ### Clone
 
@@ -45,18 +44,19 @@ This will return a count of all server accesses contained in the log.
 - More robust timestamp handling
 - Filter by upload or download (easy to implement)
 - More robust Makefile (fully qualified paths)
+- Get test coverage near 100% by checking more error branches
 
-Current test coverage is pretty good!
+Current test coverage is pretty good though!
+
 ```
-PASS
 coverage: 91.9% of statements
-ok      github.com/gjbranham/ciq-takehome/filter        0.088s  coverage: 91.9% of statements
+ok      github.com/gjbranham/ciq-takehome/filter        0.765s  coverage: 91.9% of statements
 github.com/gjbranham/ciq-takehome/args/args.go:21:      ProcessArgs             68.4%
 github.com/gjbranham/ciq-takehome/args/args.go:51:      validateArgs            88.9%
-github.com/gjbranham/ciq-takehome/csv/csv.go:16:        ReadCsv                 84.6%
+github.com/gjbranham/ciq-takehome/csv/csv.go:16:        ReadCsv                 92.3%
 github.com/gjbranham/ciq-takehome/filter/filter.go:10:  FilterData              86.7%
 github.com/gjbranham/ciq-takehome/filter/filter.go:38:  filterByUsername        100.0%
 github.com/gjbranham/ciq-takehome/filter/filter.go:48:  filterByDate            88.9%
 github.com/gjbranham/ciq-takehome/filter/filter.go:65:  filterBySize            100.0%
-total:                                                  (statements)            84.6%
+total:                                                  (statements)            85.9%
 ```

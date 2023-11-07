@@ -2,6 +2,7 @@ package csv
 
 import (
 	"bytes"
+	"io"
 	"os"
 	"reflect"
 	"strings"
@@ -40,5 +41,21 @@ func TestCsvIsReadProperly(t *testing.T) {
 
 	if !reflect.DeepEqual(expectedInfo, actualInfo) {
 		t.Fatalf("Expected and actual differ:\nExpected: %v\nActual  : %v\n", expectedInfo, actualInfo)
+	}
+}
+
+func TestReadingEmptyOrNoDataCsv(t *testing.T) {
+	var buf bytes.Buffer
+
+	_, err := ReadCsv(&buf)
+	if err != io.EOF {
+		t.Fatal("Attempting to read an empty log file should return EOF error")
+	}
+
+	buf.WriteString("timestamp,username,operation,size\n")
+
+	actualInfo, _ := ReadCsv(&buf)
+	if len(actualInfo) != 0 {
+		t.Fatal("Log file with only header should return empty slice of data")
 	}
 }
