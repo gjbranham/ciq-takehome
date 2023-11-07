@@ -16,7 +16,7 @@ func FilterData(data []c.AccessInfo, args *args.Arguments) ([]c.AccessInfo, erro
 	}
 
 	if args.Username != "" {
-		filteredData = filterByUsername(data, args.Username)
+		filteredData = filterByUsername(filteredData, args.Username)
 	}
 
 	if args.Date != "" {
