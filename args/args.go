@@ -48,19 +48,20 @@ func ProcessArgs(exeName string, sysArgs []string) (*Arguments, error) {
 	return &args, nil
 }
 
+// application will termiante if any of these validations fail
 func validateArgs(args Arguments) error {
 	if args.SourceFile == "" {
 		return errors.New("source file cannot be empty")
 	}
 
 	if (args.GreaterThanSize > 0 && args.LessThanSize > 0) && (args.GreaterThanSize > args.LessThanSize) {
-		return errors.New("invalid combination of greaterThan and lessThan values")
+		return errors.New("greaterThan target cannot be larger than lessThan target")
 	}
 
 	if args.Date != "" {
 		_, err := time.Parse("02/01/2006", args.Date)
 		if err != nil {
-			return err
+			return errors.New("invalid format for supplied date")
 		}
 	}
 	return nil

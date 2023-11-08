@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	// process cmd-line args
 	args, err := args.ProcessArgs(os.Args[0], os.Args[1:])
 	if err == flag.ErrHelp {
 		os.Exit(2)
@@ -19,6 +20,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	// open target log file
 	fo, err := os.Open(args.SourceFile)
 	if err != nil {
 		fmt.Printf("Failed to open provided log file '%v': %v\n", args.SourceFile, err)
@@ -26,6 +28,7 @@ func main() {
 	}
 	defer fo.Close()
 
+	// read csv data, passing in file object (dependency injection - we can substitute a buffer in unit tests)
 	allData, err := c.ReadCsv(fo)
 	if err != nil {
 		fmt.Printf("Failed to read provided log file '%v': %v\n", args.SourceFile, err)
@@ -35,12 +38,14 @@ func main() {
 		os.Exit(0)
 	}
 
+	// apply filters
 	filteredData, err := f.FilterData(allData, args)
 	if err != nil {
 		fmt.Printf("Failed to filter server data: %v\n", err)
 		os.Exit(1)
 	}
 
+	// done
 	if args.Verbose {
 		for _, item := range filteredData {
 			fmt.Printf("%v,%v,%v,%v\n", item.Timestamp, item.Username, item.Operation, item.Size)

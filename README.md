@@ -1,11 +1,16 @@
 # CIQ Takehome Assessment
 
+
+
 This repository implements a command-line utility for filtering server access data contained in comma-separated server logs. The data should be structured like so:
 
 | timestamp                    | username | operation | size |
 | ---------------------------- | -------- | --------- | ---- |
 | Sun Apr 12 22:10:38 UTC 2020 | sarah94  | download  | 34   |
 | Sun Apr 12 22:35:06 UTC 2020 | Maia86   | download  | 75   |
+
+## Usage
+**Note**: go must be installed on the host machine for building and testing
 
 ### Clone
 
@@ -33,7 +38,7 @@ This will return a count of all server accesses contained in the log.
 
 **-u** filter by username
 
-**-t** filter by date
+**-d** filter by date
 
 **-gt** filter by file size greater than target
 

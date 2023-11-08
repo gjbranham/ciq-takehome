@@ -7,6 +7,7 @@ import (
 	c "github.com/gjbranham/ciq-takehome/csv"
 )
 
+// pass data through each filter as required
 func FilterData(data []c.AccessInfo, args *args.Arguments) ([]c.AccessInfo, error) {
 	filteredData := data
 	var err error
