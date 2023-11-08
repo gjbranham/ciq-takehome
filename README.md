@@ -38,11 +38,11 @@ This will return a count of all server accesses contained in the log.
 
 **-u** filter by username
 
-**-d** filter by date
+**-d** filter by date. DD/MM/YYYY format
 
-**-gt** filter by file size greater than target
+**-gt** filter by file size greater than target in kB
 
-**-lt** filter by file size less than target
+**-lt** filter by file size less than target in kB
 
 ## Notes and ideas for improvements
 
